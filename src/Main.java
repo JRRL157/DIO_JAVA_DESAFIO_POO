@@ -1,8 +1,8 @@
-import br.com.dio.desafio.dominio.Conteudo;
-import br.com.dio.desafio.dominio.Curso;
-import br.com.dio.desafio.dominio.Mentoria;
+import br.com.dio.desafio.dominio.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,10 +16,26 @@ public class Main {
         mentoria.setDescricao("Hoho2");
         mentoria.setData(LocalDate.now());
 
-        Conteudo conteudo = new Mentoria();
-        Conteudo conteudo1 = new Curso();
+        Bootcamp bootcamp = new Bootcamp("Bootcamp Java Developer","Uma descrição qualquer!");
+        bootcamp.addConteudo(curso);
+        bootcamp.addConteudo(mentoria);
 
-        System.out.println(curso);
-        System.out.println(mentoria);
+        Dev dev1 = new Dev("João");
+        Dev dev2 = new Dev();
+        dev2.setNome("Maria");
+
+        dev1.signUpBootcamp(bootcamp);
+        dev2.signUpBootcamp(bootcamp);
+
+        //Antes de progredir
+        System.out.println(dev1.exibirCursos());
+        System.out.println(dev2.exibirCursos());
+
+        //Após progredir
+        dev2.progredir();
+        dev2.progredir();
+        dev1.progredir();
+        System.out.println(dev1.exibirCursos()+"\nXP = "+dev1.calcularTotalXP());
+        System.out.println(dev2.exibirCursos()+"\nXP = "+dev2.calcularTotalXP());
     }
 }
